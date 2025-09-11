@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -23,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,139 +43,104 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ecom.presentation.utils.CustomTextField
 
-@Preview(showSystemUi = true)
-@Composable
-fun SignUpScreen() {
 
+//@Preview(showSystemUi = true)
+@Composable
+fun LoginScreen() {
     val context = LocalContext.current
-    var firstName by remember { mutableStateOf("") }
-    var lastname by remember { mutableStateOf("") }
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
-    var phoneNumber by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-
-        ) {
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(
-            text = "Hello",
+            text = "Login",
+            fontWeight = FontWeight.Bold,
             fontSize = 24.sp,
-            style = TextStyle(fontWeight = FontWeight.Bold),
-            modifier = Modifier
-                .padding(vertical = 16.dp)
-                .align(Alignment.Start),
-            textAlign = TextAlign.Center
-
-
-        )
-
-        CustomTextField(
-            value = firstName,
-            onValueChange = { firstName = it },
-            lable = "First Name",
-            leadingIcon = Icons.Default.Person,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp)
-        )
-        CustomTextField(
-            value = lastname,
-            onValueChange = { lastname = it },
-            lable = "Last Name",
-            leadingIcon = Icons.Default.Person,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp)
+            modifier = Modifier.padding(vertical = 8.dp)
         )
         CustomTextField(
             value = email,
             onValueChange = { email = it },
             lable = "Email",
             leadingIcon = Icons.Default.Email,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp)
+            modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.size(8.dp))
         CustomTextField(
             value = password,
             onValueChange = { password = it },
-            lable = "Password",
+            lable = "Email",
             leadingIcon = Icons.Default.Lock,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            visualTransformation = PasswordVisualTransformation(), // for ***** when we enter password
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = "Forgot Password?", modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.End)
+        )
+//        Spacer(modifier = Modifier.size(16.dp))
+        Button(
+            onClick = {
+                if (email.isNotEmpty() && password.isNotEmpty()) {
+                    // all fields are filled, proceed with sign-up logic
+                    Toast.makeText(context, "signup successfully", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
 
-        )
-        CustomTextField(
-            value = confirmPassword,
-            onValueChange = { confirmPassword = it },
-            lable = "Confirm Password",
-            leadingIcon = Icons.Default.Lock,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 4.dp),
-            visualTransformation = PasswordVisualTransformation()
-        )
-        CustomTextField(
-            value = phoneNumber,
-            onValueChange = { phoneNumber = it },
-            lable = "Phone Number",
-            leadingIcon = Icons.Default.Call,
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 4.dp)
-
-        )
-
-        Button(
-            onClick = {
-                if (firstName.isNotEmpty() && lastname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty() && phoneNumber.isNotEmpty()) {
-                    // all fields are filled, proceed with sign-up logic
-                    if (password == confirmPassword) {
-                        Toast.makeText(context, "signup successfully", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "password doesn't match", Toast.LENGTH_SHORT).show()
-
-                    }
-                } else {
-                    Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-                }
-            },
-            modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp).size(50.dp),
+                .size(50.dp),
             shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.Blue)
+            colors = ButtonDefaults.buttonColors(
+                colorResource(id = R.color.Blue)
             )
-        ) {
-            Text(text = "Sign Up", color = colorResource(id = R.color.black), fontSize = 16.sp, fontWeight = FontWeight.Bold)
 
+        ) {
+            Text(
+                text = "Login",
+                color = colorResource(id = R.color.black),
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
         Row(
-            modifier=Modifier.fillMaxWidth().padding(vertical = 8.dp),
+            modifier = Modifier
+                .fillMaxWidth(),
+//
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-        ){
-            Text(
-                text ="Already have an account?",fontSize = 14.sp
+        ) {
+            androidx.compose.material.Text(
+                text = "Already have an account?", fontSize = 14.sp
             )
             TextButton(
-                onClick = {/* go to login screen*/}
+                modifier = Modifier.padding(0.dp),
+                onClick = {/* go to home screen*/ }
             ) {
-                Text(text="login",fontSize = 14.sp, color = colorResource(id = R.color.Blue))
-                    }
+                androidx.compose.material.Text(
+                    text = "login",
+                    fontSize = 14.sp,
+                    color = colorResource(id = R.color.Blue)
+                )
+            }
         }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
 
             HorizontalDivider(modifier = Modifier.weight(1f))
-            Text(
+            androidx.compose.material.Text(
                 text = "OR",
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
@@ -184,18 +148,21 @@ fun SignUpScreen() {
 
         }
         OutlinedButton(onClick = {},
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
             shape = RoundedCornerShape(8.dp)
-            ){
+        ){
             Image(painter = painterResource(id = R.drawable.google), contentDescription = null,
                 modifier = Modifier.size(30.dp))
             Spacer(modifier = Modifier.size(8.dp))
-            Text(text= "login with Google", color = colorResource(id = R.color.black), fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            androidx.compose.material.Text(
+                text = "login with Google",
+                color = colorResource(id = R.color.black),
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
 
 
 
     }
-
-
 }
