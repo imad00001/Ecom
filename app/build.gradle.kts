@@ -40,6 +40,9 @@ android {
     buildFeatures {
         compose = true
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -90,4 +93,11 @@ dependencies {
 
     //custom bottom nev bar
     implementation("com.canopas.compose-animated-navigationbar:bottombar:1.0.1")
+
+    //cloudinary (in place of firebase storage)
+    implementation("com.cloudinary:cloudinary-android:3.0.2")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment:2.7.7")
+    implementation("androidx.navigation:navigation-ui:2.7.7")
 }
