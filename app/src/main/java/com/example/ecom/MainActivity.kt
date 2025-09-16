@@ -19,12 +19,14 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.ecom.presentation.SignUpScreen
 import com.example.ecom.ui.theme.EcomTheme
+import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val client = OkHttpClient()
 
@@ -39,6 +41,29 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    @Composable
 //    fun CloudinaryUploadScreen() {
